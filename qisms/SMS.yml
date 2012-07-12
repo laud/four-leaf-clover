@@ -1,0 +1,4 @@
+template: send to %s [%s]. %s
+defaultName: Stranger
+#endPoint: 'http://ec2-23-22-57-59.compute-1.amazonaws.com'
+endPoint: 'heman:10090'
