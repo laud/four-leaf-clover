@@ -69,7 +69,7 @@ public class SMSReceiveResource {
         logger.info("Answer: " + body);
         logger.info("Location: " + location);
         logger.info("questionId: " + questionId);
-        String url = String.format("%s/answer/for/%s?text=%s&number=%s&location=%s",endpoint, URLEncoder.encode(questionId), URLEncoder.encode(body), fromNumber, URLEncoder.encode(location));
+        String url = "http://uatservices.powerreviews.com/APOSupercharge.dox?endPoint=" + URLEncoder.encode(endpoint) + URLEncoder.encode("/answer/for/") + "&questionId="+URLEncoder.encode(questionId)+"&text="+URLEncoder.encode(body)+"&profileId="+fromNumber+"&location=" + URLEncoder.encode(location);
         logger.info("postURL: "+url);
         HttpClient httpClient = new HttpClient();
         GetMethod getMethod = new GetMethod(url);
