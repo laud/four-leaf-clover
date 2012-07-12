@@ -270,10 +270,12 @@ const unsigned char SpeechKitApplicationKey[] = {0xdd, 0x32, 0xe8, 0x98, 0xde, 0
     
     transactionState = TS_RECORDING;
     
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+	[self.navigationController.view addSubview:HUD];
 	HUD.mode = MBProgressHUDModeIndeterminate;
+	HUD.delegate = self;
 	HUD.labelText = @"Listening...";
     [HUD show:YES];
-
 }
 
 - (void)recognizerDidFinishRecording:(SKRecognizer *)recognizer
