@@ -3,6 +3,7 @@ package com.bazaarvoice.emodb.examples.skeleton;
 import com.bazaarvoice.emodb.databus.api.Databus;
 import com.bazaarvoice.emodb.databus.client.DatabusClientFactory;
 import com.bazaarvoice.emodb.esquire.api.Esquire;
+import com.bazaarvoice.emodb.examples.skeleton.config.CloverConfiguration;
 import com.bazaarvoice.emodb.examples.skeleton.config.DatabusListeningConfiguration;
 import com.bazaarvoice.emodb.examples.skeleton.config.SkeletonConfiguration;
 import com.bazaarvoice.emodb.examples.skeleton.databus.DatabusResource;
@@ -65,6 +66,7 @@ public class SkeletonModule extends AbstractModule {
         bind(Esquire.class).toInstance(createEsquireClient());      // The client (or example thereof) you will use to access ElasticSearch
 
         bind(DatabusListeningConfiguration.class).toInstance(skeletonConfiguration.getDatabusListeningConfiguration());
+        bind(CloverConfiguration.class).toInstance(skeletonConfiguration.getCloverConfiguration());
         bind(ExecutorService.class).annotatedWith(DatabusResource.class).toInstance(databusPollingExecutorService);
         bind(ScheduledExecutorService.class).annotatedWith(DatabusResource.class).toInstance(databusSubscriptionExecutorService);
     }

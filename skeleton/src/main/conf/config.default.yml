@@ -6,6 +6,9 @@ http:
 databus:
   maxNumEventsPerDatabusPoll: 2000
 
+clover:
+  phoneNumbers: 4083385198,4088340499
+
 # Configure the HTTP client that Polloi uses to make outbound requests (primarily to Databus).
 httpClient:
   connectionTimeout: 5s       # Timeout after 1 second while connecting.
