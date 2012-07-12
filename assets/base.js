@@ -15,11 +15,11 @@ var questions = function($, _, Backbone) {
     $.ajaxSetup({ cache: false });
 
     var xhrMap = {
-        // "base"      : {"uri": "http://heman:10090/question/for/macbook-pro"},
-        "create"    : {"GET_override": true, "uri" : "http://heman:10090/question/for/macbookpro"},    // Model.save() - only if model.isNew()
-        "read"      : {"GET_override": true, "uri" : "http://heman:10090/question/for/macbook-pro"},   // Model.fetch()
-        "update"    : {"GET_override": true, "uri" : "http://heman:10090/question/for/macbookpro"},    // Model.save()
-        "delete"    : {"GET_override": true, "uri" : "http://heman:10090/question/for/macbookpro"}     // Model.destroy()
+
+        "create"    : {"GET_override": true, "uri" : "http://heman:10090/question/for/1234"},    // Model.save() - only if model.isNew()
+        "read"      : {"GET_override": true, "uri" : "http://heman:10090/question/1342084417319"},   // Model.fetch()
+        // "update"    : {"GET_override": true, "uri" : "http://heman:10090/question/for/1234"},    // Model.save()
+        // "delete"    : {"GET_override": true, "uri" : "http://heman:10090/question/for/1234"}     // Model.destroy()
     };
 
 
@@ -80,7 +80,7 @@ var questions = function($, _, Backbone) {
 		},
         // comparator  : function(action){ return action.get("points") },
         url         : function(){ return xhrMap['read'].uri },
-        parse       : function(response){ return response.result; }
+        parse       : function(response){ return response }
 
     });
 
@@ -157,7 +157,7 @@ var questions = function($, _, Backbone) {
             var cid = action.cid;
             action = action.toJSON();
             action.cid = cid;
-           console.log("append_to_list()", action);
+            console.log("append_to_list()", action);
             var html = this.template(action);
             $(this.el).find("#question-display-ul").append(html);
             return this;
@@ -170,7 +170,7 @@ var questions = function($, _, Backbone) {
 
 		// Backbone MVC Init
 		questionList = new QuestionList([]);
-
+		
 		 // initialize view
 		var questionView = new QuestionView({
 			collection  : questionList,
@@ -179,7 +179,7 @@ var questions = function($, _, Backbone) {
 
 		// set up polling for questions & answers
 		setInterval(function () { questionList.fetch(); }, 5000);
-
+		
 		
 		// submit question flow
 		$("#question-submit").click(function(e){
@@ -197,7 +197,7 @@ var questions = function($, _, Backbone) {
 			var q = {};
 				q.text = $("#ask-question").val();
 			        $.ajax({
-			            url: "http://heman:10090/question/for/macbook-pro",
+			            url: "http://heman:10090/question/for/1234",
 			            dataType: 'json',			
 			            type: 'GET',
 			            timeout : 7000,
@@ -225,6 +225,26 @@ var questions = function($, _, Backbone) {
 		});
 		
 		console.info("init complete");
+		
+		
+		// DEBUG
+		
+		// (function() {
+		// 	        $.ajax({
+		// 	            url: "http://heman:10090/question/1342084417319",
+		// 		// url: 'http://where.yahooapis.com/v1/places.woeid(28656958)?appid=wTAykynV34EggVpX2AWJPYkAAyV7Hrdlcj0CSdF1glsVmbhQ45HgFarbM3QgZJmL&format=json',
+		// 	            dataType: 'text',			
+		// 	            type: 'GET',
+		// 	            timeout : 7000,
+		// 		// data : q,
+		// 	            success: function(data) {
+		// 	                console.log("ajax success: ", data);
+		// 	            },
+		// 	            error: function() {
+		// 	                console.log("ajax fail");
+		// 	            }
+		// 	        });			
+		// })();
 		
     })();
 
