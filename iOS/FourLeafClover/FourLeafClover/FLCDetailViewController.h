@@ -34,7 +34,6 @@
 
 @property IBOutlet UILabel *questionLabel;
 @property IBOutlet UISegmentedControl *answerControl;
-@property IBOutlet UIButton *submitButton;
 @property IBOutlet UITextView *answerField;
 
 - (IBAction)answerControlChanged:(id)sender;

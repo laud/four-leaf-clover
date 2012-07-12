@@ -105,6 +105,9 @@ const unsigned char SpeechKitApplicationKey[] = {0xdd, 0x32, 0xe8, 0x98, 0xde, 0
 {
     [super viewDidLoad];
     
+    UIImageView* img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"shamrock.png"]];
+    self.navigationItem.titleView = img;
+    
     self.pickerController = [[UIImagePickerController alloc] init];
     self.pickerController.delegate = self;
         
@@ -254,7 +257,6 @@ const unsigned char SpeechKitApplicationKey[] = {0xdd, 0x32, 0xe8, 0x98, 0xde, 0
 
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
-    NSLog(@"here");
     NSString *text = textView.text;
     if ([text isEqualToString:@"My answer..."]) {
         textView.text = @"";

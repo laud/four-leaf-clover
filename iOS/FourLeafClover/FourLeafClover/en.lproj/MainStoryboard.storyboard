@@ -8,7 +8,10 @@
         <scene sceneID="NXK-GL-gHv">
             <objects>
                 <navigationController definesPresentationContext="YES" id="m6r-2G-Tq1" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4qc-vD-4L9">
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackOpaque"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="4qc-vD-4L9">
+                        <rect key="frame" x="0.0" y="-44" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="ZTO-dw-gfR">
@@ -106,7 +109,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="submitButtonPressed:" destination="r9s-KP-LQW" eventType="touchUpInside" id="ddt-iB-NnW"/>
+                                    <action selector="submitButtonPressed:" destination="r9s-KP-LQW" eventType="touchUpInside" id="Ou6-5J-jk3"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" hasAttributedTitle="NO" lineBreakMode="middleTruncation" id="pYY-Wl-See">
@@ -137,7 +140,6 @@
                         <outlet property="answerControl" destination="4eW-JP-heF" id="x3T-le-uz8"/>
                         <outlet property="answerField" destination="3jR-in-B5i" id="RqQ-B0-hsR"/>
                         <outlet property="questionLabel" destination="wKV-sm-UFO" id="Mmh-AQ-lPi"/>
-                        <outlet property="submitButton" destination="msX-4h-qcp" id="tmT-OH-QDh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wuQ-dc-ZQo" userLabel="First Responder" sceneMemberID="firstResponder"/>

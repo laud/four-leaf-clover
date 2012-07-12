@@ -35,8 +35,9 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    self.title = @"Four Leaf Clover";
+    [super viewDidLoad];    
+    UIImageView* img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"shamrock.png"]];
+    self.navigationItem.titleView = img;
     
     if (_refreshHeaderView == nil) {
 		

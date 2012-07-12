@@ -78,6 +78,8 @@
 		651467C715AF2A3F00B3DA74 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 651467C615AF2A3E00B3DA74 /* AudioToolbox.framework */; };
 		651467C915AF2A7300B3DA74 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 651467C815AF2A7200B3DA74 /* AVFoundation.framework */; };
 		651467CA15AF2B9400B3DA74 /* SpeechKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 651467C015AF26DB00B3DA74 /* SpeechKit.framework */; };
+		6583549F15AF3C65005A6445 /* shamrock.png in Resources */ = {isa = PBXBuildFile; fileRef = 6583549D15AF3C65005A6445 /* shamrock.png */; };
+		658354A015AF3C65005A6445 /* shamrock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6583549E15AF3C65005A6445 /* shamrock@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -189,6 +191,8 @@
 		651467C015AF26DB00B3DA74 /* SpeechKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpeechKit.framework; sourceTree = "<group>"; };
 		651467C615AF2A3E00B3DA74 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		651467C815AF2A7200B3DA74 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		6583549D15AF3C65005A6445 /* shamrock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shamrock.png; sourceTree = "<group>"; };
+		6583549E15AF3C65005A6445 /* shamrock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shamrock@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -315,6 +319,8 @@
 		6514655B15AE99C200B3DA74 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				6583549D15AF3C65005A6445 /* shamrock.png */,
+				6583549E15AF3C65005A6445 /* shamrock@2x.png */,
 				651467A715AEF61D00B3DA74 /* blackArrow.png */,
 				651467A815AEF61D00B3DA74 /* blackArrow@2x.png */,
 				651467A915AEF61D00B3DA74 /* blueArrow.png */,
@@ -471,6 +477,8 @@
 				651467B015AEF61D00B3DA74 /* blueArrow@2x.png in Resources */,
 				651467B115AEF61D00B3DA74 /* grayArrow.png in Resources */,
 				651467B215AEF61D00B3DA74 /* grayArrow@2x.png in Resources */,
+				6583549F15AF3C65005A6445 /* shamrock.png in Resources */,
+				658354A015AF3C65005A6445 /* shamrock@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
