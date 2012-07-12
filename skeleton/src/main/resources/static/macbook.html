@@ -69,10 +69,7 @@
                   <img src="assets/laptop.jpg" alt="laptop" style="margin-top:10px;margin-bottom:20px;">
 
                   <ul class="nav nav-list">
-                      <li class="nav-header">Model: MC976LL/A SKU: 5430532</li>
-                      <li>
-                      <h2 style="line-height:1.2em">Apple MacBook Pro with Retina Display</h2>
-                      </li>
+
                       <li>&nbsp;</li>
                       <li>15.4" Display</li>
                       <li>8 GB Memory</li>
@@ -87,31 +84,34 @@
                   <h1>Have a Question?</h1>
                   <div style="margin:20px 0 10px 0;">
 					<form id="question-form">
-                    	<span id="question-length" style="font-size:18px;padding-bottom:5px;display:block;width:90%;text-align:right;">&nbsp;</span>  
-                    	<input type="text" id="ask-question" style="font-size:24px;height:42px;width:90%">
+                    	<span id="question-length" style="font-size:18px;padding-bottom:5px;display:block;width:80%;text-align:right;">&nbsp;</span>
+                    	<input type="text" id="ask-question" style="font-size:24px;height:42px;width:80%">
                     	<a id="question-submit" class="btn btn-primary btn-large"> Ask </a>
 					</form>
                   </div>
               </div>
 
 			 <div id="question-display">
-			 	<ul class="question-display-ul">
-			 		<li>
-						<h2>Why is there hunger?</h2>
-						<p>-- asked by Bono</p>
-						<ul>
-							<li>
-								<h4>"The World Bank, IMF, Wall Street"</h4>
-								<p>-- from Daxia</p>						
-							</li>
-						</ul>	
-					</li>
+			 	<ul id="question-display-ul">
+			 		<!--<li>-->
+						<!--<h2>Why is there hunger?</h2>-->
+						<!--<p>-- asked by Bono</p>-->
+						<!--<ul>-->
+							<!--<li>-->
+								<!--<h4>"The World Bank, IMF, Wall Street"</h4>-->
+								<!--<p>-- from Daxia</p>						-->
+							<!--</li>-->
+						<!--</ul>	-->
+					<!--</li>-->
 			 	</ul>
 			 </div>	
 			
 			 <!-- template -->
 			 <div id="question-display-template" style="display:none;">
-
+                <li>
+                    <h3>{% data.text %}</h3>
+                    <p>--from {% data.location %} at {% data.lastUpdateAt %}</p>
+                </li>
 			 </div>
 
           </div>
