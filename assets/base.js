@@ -76,7 +76,7 @@ var questions = function($, _, Backbone) {
         model       : Question,
         initialize  : function(){  
 			/* console.log("new ActionList initialize()"); */ 
-			this.fetch();
+			// this.fetch();
 		},
         // comparator  : function(action){ return action.get("points") },
         url         : function(){ return xhrMap['read'].uri },
@@ -178,19 +178,19 @@ var questions = function($, _, Backbone) {
 		});
 
 		// set up polling for questions & answers
-		setInterval(function () { questionList.fetch(); }, 5000);
+		// setInterval(function () { questionList.fetch(); }, 5000);
 		
 		
 		// submit question flow
 		$("#question-submit").click(function(e){
 			e.preventDefault();
 			submitQuestion();
-			questionList.fetch();
+			// questionList.fetch();
 		});
 		$("#question-form").submit(function(e){
 			e.preventDefault();
 			submitQuestion();
-			questionList.fetch();
+			// questionList.fetch();
 		});
 		
 		function submitQuestion() {
