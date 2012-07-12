@@ -7,7 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EGORefreshTableHeaderView.h"
 
-@interface FLCQuestionViewController : UITableViewController
+@class FLCQuestionService;
+
+@interface FLCQuestionViewController : UITableViewController <EGORefreshTableHeaderDelegate, UITableViewDelegate, UITableViewDataSource>
+{
+    EGORefreshTableHeaderView *_refreshHeaderView;
+    
+    BOOL _reloading;
+}
+
+
+@property (nonatomic, strong) FLCQuestionService *questionService;
 
 @end

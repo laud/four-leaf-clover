@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6514651E15AE79FC00B3DA74"
-               BuildableName = "FourLeafClover.app"
+               BuildableName = "4 Leaf Clover.app"
                BlueprintName = "FourLeafClover"
                ReferencedContainer = "container:FourLeafClover.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6514651E15AE79FC00B3DA74"
-            BuildableName = "FourLeafClover.app"
+            BuildableName = "4 Leaf Clover.app"
             BlueprintName = "FourLeafClover"
             ReferencedContainer = "container:FourLeafClover.xcodeproj">
          </BuildableReference>
@@ -47,12 +47,13 @@
       buildConfiguration = "Debug"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
+      enableOpenGLFrameCaptureMode = "0"
       allowLocationSimulation = "YES">
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6514651E15AE79FC00B3DA74"
-            BuildableName = "FourLeafClover.app"
+            BuildableName = "4 Leaf Clover.app"
             BlueprintName = "FourLeafClover"
             ReferencedContainer = "container:FourLeafClover.xcodeproj">
          </BuildableReference>
@@ -70,7 +71,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6514651E15AE79FC00B3DA74"
-            BuildableName = "FourLeafClover.app"
+            BuildableName = "4 Leaf Clover.app"
             BlueprintName = "FourLeafClover"
             ReferencedContainer = "container:FourLeafClover.xcodeproj">
          </BuildableReference>

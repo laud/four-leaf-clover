@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2809" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="m6r-2G-Tq1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2809" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="m6r-2G-Tq1">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1884"/>
     </dependencies>
@@ -32,22 +32,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="QuestionCell" textLabel="Yn7-Iz-8X7" detailTextLabel="9fp-5e-Rum" rowHeight="70" style="IBUITableViewCellStyleSubtitle" id="KUs-Rz-5VM">
-                                <rect key="frame" x="0.0" y="22" width="320" height="70"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="QuestionCell" textLabel="Yn7-Iz-8X7" rowHeight="60" style="IBUITableViewCellStyleDefault" id="KUs-Rz-5VM">
+                                <rect key="frame" x="0.0" y="22" width="320" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="69"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="59"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" text="blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah " adjustsFontSizeToFit="NO" autoshrinkMode="none" id="Yn7-Iz-8X7">
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" text="blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah " adjustsFontSizeToFit="NO" autoshrinkMode="none" id="Yn7-Iz-8X7">
+                                            <rect key="frame" x="10" y="0.0" width="280" height="59"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                        </label>
-                                        <label translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="Daniel Lau" textAlignment="right" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="9fp-5e-Rum">
-                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         </label>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -76,33 +72,20 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="Question:" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="PIw-1B-5ZB">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="0Uk-Xk-RnJ"/>
-                                    <constraint firstAttribute="width" constant="86" id="mGi-18-Sxw"/>
-                                </constraints>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="Question:" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="PIw-1B-5ZB">
+                                <rect key="frame" x="20" y="1" width="86" height="28"/>
                                 <nil key="highlightedColor"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" white="0.4984939759" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                             </label>
-                            <label translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" text="Does a really long question come here and take up lots of of room?" textAlignment="center" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="wKV-sm-UFO">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="EB4-hk-AS7"/>
-                                </constraints>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" text="Does a really long question come here and take up lots of of room?" textAlignment="center" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="wKV-sm-UFO">
+                                <rect key="frame" x="20" y="26" width="280" height="64"/>
                                 <nil key="highlightedColor"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                             </label>
-                            <label translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="- Daniel Lau" textAlignment="right" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="zi3-eR-dEz">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="136" id="f8F-Xi-Vn4"/>
-                                    <constraint firstAttribute="height" constant="19" id="sbS-fn-HKC"/>
-                                </constraints>
-                                <nil key="highlightedColor"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            </label>
-                            <segmentedControl translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" id="4eW-JP-heF">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" id="4eW-JP-heF">
+                                <rect key="frame" x="20" y="93" width="280" height="44"/>
                                 <segments>
                                     <segment title="" image="camera.png"/>
                                     <segment title="" image="pencilangled.png"/>
@@ -112,7 +95,8 @@
                                     <action selector="answerControlChanged:" destination="r9s-KP-LQW" eventType="valueChanged" id="qHA-Mf-Obj"/>
                                 </connections>
                             </segmentedControl>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" hasAttributedTitle="NO" lineBreakMode="middleTruncation" id="msX-4h-qcp">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" hasAttributedTitle="NO" lineBreakMode="middleTruncation" id="msX-4h-qcp">
+                                <rect key="frame" x="20" y="352" width="280" height="44"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Submit">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -125,10 +109,8 @@
                                     <action selector="submitButtonPressed:" destination="r9s-KP-LQW" eventType="touchUpInside" id="ddt-iB-NnW"/>
                                 </connections>
                             </button>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" hasAttributedTitle="NO" lineBreakMode="middleTruncation" id="pYY-Wl-See">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="174" id="atq-cf-qNx"/>
-                                </constraints>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" hasAttributedTitle="NO" lineBreakMode="middleTruncation" id="pYY-Wl-See">
+                                <rect key="frame" x="20" y="144" width="280" height="174"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -138,41 +120,22 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <textView translatesAutoresizingMaskIntoConstraints="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" text="My answer..." id="3jR-in-B5i">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" text="My answer..." id="3jR-in-B5i">
+                                <rect key="frame" x="20" y="144" width="280" height="174"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <connections>
+                                    <outlet property="delegate" destination="r9s-KP-LQW" id="2gq-al-PIZ"/>
+                                </connections>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="msX-4h-qcp" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="1cD-d4-je2"/>
-                            <constraint firstItem="3jR-in-B5i" firstAttribute="bottom" secondItem="pYY-Wl-See" secondAttribute="bottom" type="default" id="5s9-TF-gDj"/>
-                            <constraint firstItem="pYY-Wl-See" firstAttribute="top" secondItem="4eW-JP-heF" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="9UT-fj-nq3"/>
-                            <constraint firstAttribute="bottom" secondItem="msX-4h-qcp" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="BUN-et-rEs"/>
-                            <constraint firstAttribute="trailing" secondItem="4eW-JP-heF" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Fmu-Y3-a6s"/>
-                            <constraint firstItem="wKV-sm-UFO" firstAttribute="leading" secondItem="xfR-lk-TYd" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="OhT-HT-Gyl"/>
-                            <constraint firstItem="3jR-in-B5i" firstAttribute="leading" secondItem="xfR-lk-TYd" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="SPP-LU-Z7c"/>
-                            <constraint firstAttribute="trailing" secondItem="wKV-sm-UFO" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="UA8-jL-GYJ"/>
-                            <constraint firstAttribute="trailing" secondItem="zi3-eR-dEz" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="VZD-9y-bCt"/>
-                            <constraint firstAttribute="trailing" secondItem="pYY-Wl-See" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="WX3-2z-2lM"/>
-                            <constraint firstItem="3jR-in-B5i" firstAttribute="top" secondItem="4eW-JP-heF" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="fRi-QV-Btw"/>
-                            <constraint firstItem="zi3-eR-dEz" firstAttribute="top" secondItem="xfR-lk-TYd" secondAttribute="top" constant="85" id="gR7-JR-cGs"/>
-                            <constraint firstItem="4eW-JP-heF" firstAttribute="leading" secondItem="xfR-lk-TYd" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="iBs-ww-Qxr"/>
-                            <constraint firstItem="wKV-sm-UFO" firstAttribute="top" secondItem="xfR-lk-TYd" secondAttribute="top" constant="26" id="rLD-gb-G3H"/>
-                            <constraint firstAttribute="trailing" secondItem="3jR-in-B5i" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="teO-BW-NQt"/>
-                            <constraint firstItem="pYY-Wl-See" firstAttribute="leading" secondItem="xfR-lk-TYd" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="v2P-m8-y0V"/>
-                            <constraint firstItem="4eW-JP-heF" firstAttribute="top" secondItem="zi3-eR-dEz" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="wnf-LL-5PL"/>
-                            <constraint firstItem="msX-4h-qcp" firstAttribute="leading" secondItem="xfR-lk-TYd" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="xOi-z5-Syj"/>
-                            <constraint firstItem="PIw-1B-5ZB" firstAttribute="leading" secondItem="xfR-lk-TYd" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="xzf-l4-l6X"/>
-                            <constraint firstItem="PIw-1B-5ZB" firstAttribute="top" secondItem="xfR-lk-TYd" secondAttribute="top" constant="1" id="yni-9a-ni2"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="sSK-hI-47O"/>
                     <connections>
                         <outlet property="answerControl" destination="4eW-JP-heF" id="x3T-le-uz8"/>
                         <outlet property="answerField" destination="3jR-in-B5i" id="RqQ-B0-hsR"/>
-                        <outlet property="askerLabel" destination="zi3-eR-dEz" id="onI-zf-zPo"/>
                         <outlet property="questionLabel" destination="wKV-sm-UFO" id="Mmh-AQ-lPi"/>
                         <outlet property="submitButton" destination="msX-4h-qcp" id="tmT-OH-QDh"/>
                     </connections>
@@ -195,16 +158,12 @@
                 <relationship kind="action" name="submitButtonPressed:"/>
                 <relationship kind="outlet" name="answerControl" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="answerField" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="askerLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="questionLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="submitButton" candidateClass="UIButton"/>
             </relationships>
         </class>
         <class className="FLCQuestionViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FLCQuestionViewController.h"/>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

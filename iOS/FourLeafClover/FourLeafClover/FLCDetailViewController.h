@@ -7,21 +7,29 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ImgurUploader.h"
+#import "MBProgressHUD.h"
 
 @class FLCQuestion;
 
-@interface FLCDetailViewController : UIViewController
+@interface FLCDetailViewController : UIViewController<UINavigationControllerDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UITextViewDelegate, ImgurUploaderDelegate, MBProgressHUDDelegate>
+{
+    ImgurUploader *uploader;
+    MBProgressHUD *HUD;
+}
 
 @property (nonatomic, strong) FLCQuestion *question;
+@property (nonatomic, strong) UIImagePickerController *pickerController;
 
 @property IBOutlet UILabel *questionLabel;
-@property IBOutlet UILabel *askerLabel;
 @property IBOutlet UISegmentedControl *answerControl;
 @property IBOutlet UIButton *submitButton;
 @property IBOutlet UITextView *answerField;
 
 - (IBAction)answerControlChanged:(id)sender;
 - (IBAction)submitButtonPressed:(id)sender;
+- (void)popHome;
+
 
 
 @end

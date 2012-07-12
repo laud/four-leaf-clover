@@ -9,12 +9,15 @@
 #import "FLCQuestionViewController.h"
 #import "FLCDetailViewController.h"
 #import "FLCQuestion.h"
-
+#import "AFNetworking.h"
+#import "EGORefreshTableHeaderView.h"
 
 @interface FLCQuestionViewController ()
 {
     NSMutableArray *_questions;
 }
+
+- (void)refreshData;
 
 @end
 
@@ -35,18 +38,50 @@
     [super viewDidLoad];
     self.title = @"Four Leaf Clover";
     
-    // Create demo data
-    FLCQuestion *q1 = [[FLCQuestion alloc] initWithId:@"1" question:@"Why am i here?" asker:@"Daniel Lau"];
-    FLCQuestion *q2 = [[FLCQuestion alloc] initWithId:@"2" question:@"Who am i?" asker:@"Daniel Lau"];
-    FLCQuestion *q3 = [[FLCQuestion alloc] initWithId:@"3" question:@"Where am i ?" asker:@"Daniel Lau"];
-    FLCQuestion *q4 = [[FLCQuestion alloc] initWithId:@"4" question:@"Why am i there?" asker:@"Daniel Lau"];
-    FLCQuestion *q5 = [[FLCQuestion alloc] initWithId:@"5" question:@"Why am i bear?" asker:@"Daniel Lau"];
-    FLCQuestion *q6 = [[FLCQuestion alloc] initWithId:@"6" question:@"Why am i care?" asker:@"Daniel Lau"];
-    FLCQuestion *q7 = [[FLCQuestion alloc] initWithId:@"7" question:@"Why am i lair?" asker:@"Daniel Lau"];
-    FLCQuestion *q8 = [[FLCQuestion alloc] initWithId:@"8" question:@"Why am i legion?" asker:@"Daniel Lau"];
-    FLCQuestion *q9 = [[FLCQuestion alloc] initWithId:@"9" question:@"Why am i red?" asker:@"Daniel Lau"];
-    FLCQuestion *q10 = [[FLCQuestion alloc] initWithId:@"10" question:@"Why am i bullish?" asker:@"Daniel Lau"];
-    _questions = [[NSMutableArray alloc] initWithObjects:q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, nil];
+    if (_refreshHeaderView == nil) {
+		
+		EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableView.bounds.size.height, self.view.frame.size.width, self.tableView.bounds.size.height)];
+		view.delegate = self;
+		[self.tableView addSubview:view];
+		_refreshHeaderView = view;		
+	}
+	
+	//  update the last update date
+	[_refreshHeaderView refreshLastUpdatedDate];
+
+    
+    _questions = [[NSMutableArray alloc] init];
+    [self refreshData];
+    
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self refreshData];
+}
+
+- (void)refreshData
+{
+    _reloading = YES;
+
+    NSString *urlString = @"http://ec2-23-22-29-111.compute-1.amazonaws.com:9200/&clover:question/_search?pretty=true&limit=20&sort=firstUpdateAt:desc";
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        [_questions removeAllObjects];
+        for(id result in [JSON valueForKeyPath:@"hits.hits"]) {
+            FLCQuestion *question = [[FLCQuestion alloc] initWithAttributes:result];
+            [_questions addObject:question];
+        }
+        [self.tableView reloadData];
+        _reloading = NO;
+        [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
+        NSLog(@"Content refresh success!");
+    } failure:nil];
+    
+    [operation start];
 }
 
 - (void)didReceiveMemoryWarning
@@ -82,7 +117,6 @@
     // Configure the cell...
     FLCQuestion *question = [_questions objectAtIndex:indexPath.row];
     cell.textLabel.text = question.question;
-    cell.detailTextLabel.text = question.asker;
     
     return cell;
 }
@@ -95,6 +129,42 @@
         FLCDetailViewController *detailViewController = [segue destinationViewController];
         detailViewController.question = [_questions objectAtIndex:selectedRowIndex.row];;
     }
+}
+
+#pragma mark -
+#pragma mark UIScrollViewDelegate Methods
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+	
+	[_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
+    
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+	
+	[_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
+	
+}
+
+
+#pragma mark -
+#pragma mark EGORefreshTableHeaderDelegate Methods
+
+- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view{
+	
+	[self refreshData];	
+}
+
+- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view{
+	
+	return _reloading; // should return if data source model is reloading
+	
+}
+
+- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view{
+	
+	return [NSDate date]; // should return date data source was last changed
+	
 }
 
 
