@@ -31,9 +31,6 @@ public class SkeletonConfiguration extends Configuration {
     @JsonProperty
     private JerseyClientConfiguration httpClient = new JerseyClientConfiguration();
 
-    @JsonProperty
-    private CloverConfiguration clover = new CloverConfiguration();
-
     public ZooKeeperConfiguration getZooKeeperConfiguration() {
         return zooKeeper;
     }
@@ -58,7 +55,4 @@ public class SkeletonConfiguration extends Configuration {
         return httpClient;
     }
 
-    public CloverConfiguration getCloverConfiguration(){
-        return clover;
-    }
 }

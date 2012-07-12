@@ -109,4 +109,5 @@ public final class DatabusListeningConfiguration {
     public int getMaxNumEventsPerDatabusPoll() {
         return maxNumEventsPerDatabusPoll;
     }
+
 }

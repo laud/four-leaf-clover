@@ -10,6 +10,7 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Provider;
 import com.yammer.dropwizard.Service;
+import com.yammer.dropwizard.bundles.AssetsBundle;
 import com.yammer.dropwizard.client.JerseyClient;
 import com.yammer.dropwizard.client.JerseyClientFactory;
 import com.yammer.dropwizard.config.Environment;
@@ -28,6 +29,8 @@ public class SkeletonService extends Service<SkeletonConfiguration> {
 
     protected SkeletonService() {
         super("skeleton");
+
+        addBundle(new AssetsBundle("/static", "/static/"));
     }
 
     protected void initialize(SkeletonConfiguration configuration, Environment environment) throws Exception {

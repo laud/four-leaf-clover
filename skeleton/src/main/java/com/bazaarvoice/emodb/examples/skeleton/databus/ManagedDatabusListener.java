@@ -3,7 +3,6 @@ package com.bazaarvoice.emodb.examples.skeleton.databus;
 import com.bazaarvoice.emodb.databus.api.Databus;
 import com.bazaarvoice.emodb.databus.api.Event;
 import com.bazaarvoice.emodb.databus.api.EventKey;
-import com.bazaarvoice.emodb.examples.skeleton.config.CloverConfiguration;
 import com.bazaarvoice.emodb.examples.skeleton.config.DatabusListeningConfiguration;
 import com.bazaarvoice.emodb.sor.condition.Conditions;
 import com.google.common.base.Function;
@@ -39,7 +38,6 @@ import java.io.*;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.StringTokenizer;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -52,7 +50,7 @@ public class ManagedDatabusListener implements Managed {
     @Inject @DatabusResource private ExecutorService databusPollingExecutorService;
     @Inject @DatabusResource private ScheduledExecutorService databusSubscriptionExecutorService;
     @Inject private DatabusListeningConfiguration databusListeningConfiguration;
-    @Inject private CloverConfiguration cloverConfiguration;
+
     @Override
     public void start() throws Exception {
 
@@ -147,16 +145,10 @@ public class ManagedDatabusListener implements Managed {
         if (text==null){
             return;
         }
-        System.out.println("Phone numbers to send messages to: " + cloverConfiguration.getPhoneNumbers());
-        String[] numbers = cloverConfiguration.getPhoneNumbers().split(",");
-
-        for (String number : numbers) {
-            if (number == null || number.trim().length()<10) continue;
-            URL smsService = new URL("http://ec2-23-22-57-59.compute-1.amazonaws.com:8080/send?questionId="+id+"&number=" + number + "&text=" + URLEncoder.encode(text, "UTF-8"));
-            URLConnection yc = smsService.openConnection();
-            BufferedReader in = new BufferedReader( new InputStreamReader(yc.getInputStream()) );
-            in.close();
-        }
+        URL smsService = new URL("http://ec2-23-22-57-59.compute-1.amazonaws.com:8080/send?questionId="+id+"&number=4083385198&text=" + URLEncoder.encode(text, "UTF-8"));
+        URLConnection yc = smsService.openConnection();
+        BufferedReader in = new BufferedReader( new InputStreamReader(yc.getInputStream()) );
+        in.close();
     }
     private static final String CHARSET = "UTF-8";
     static private class JsonEntity extends StringEntity
