@@ -1,0 +1,193 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <parent>
+        <groupId>com.bazaarvoice.commons</groupId>
+        <artifactId>bv-super-pom</artifactId>
+        <version>1.9</version>
+        <relativePath />
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.bazaarvoice.emodb.examples</groupId>
+    <artifactId>skeleton</artifactId>
+    <version>0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <name>Skeleton Example Application</name>
+
+    <properties>
+        <dropwizard.version>0.4.0</dropwizard.version>
+        <guice.version>3.0</guice.version>
+        <emodb.version>0.7</emodb.version>
+        <slf4j.version>1.6.4</slf4j.version>
+        <logback.version>1.0.2</logback.version>
+
+        <exec.Xms>512m</exec.Xms>
+        <exec.Xmx>2g</exec.Xmx>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.yammer.dropwizard</groupId>
+            <artifactId>dropwizard-core</artifactId>
+            <version>${dropwizard.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>${guice.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.bazaarvoice.emodb</groupId>
+            <artifactId>emodb-sor-client</artifactId>
+            <version>${emodb.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.bazaarvoice.emodb</groupId>
+            <artifactId>emodb-databus-client</artifactId>
+            <version>${emodb.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.bazaarvoice.emodb.toolkit</groupId>
+            <artifactId>esquire</artifactId>
+            <version>0.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>log4j-over-slf4j</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+            <version>3.2.1</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <configuration>
+                    <createDependencyReducedPom>true</createDependencyReducedPom>
+                    <filters>
+                        <filter>
+                            <artifact>*:*</artifact>
+                            <excludes>
+                                <exclude>META-INF/*.SF</exclude>
+                                <exclude>META-INF/*.DSA</exclude>
+                                <exclude>META-INF/*.RSA</exclude>
+                            </excludes>
+                        </filter>
+                    </filters>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <!-- collate the various META-INF/services entries in the JARs instead of overwriting them -->
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>com.bazaarvoice.emodb.examples.skeleton.SkeletonService</mainClass>
+                                </transformer>
+                            </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+        <!---->
+        <!--<plugins>-->
+            <!--<plugin>-->
+                <!--<groupId>org.codehaus.mojo</groupId>-->
+                <!--<artifactId>exec-maven-plugin</artifactId>-->
+                <!--<version>1.2.1</version>-->
+                <!--<configuration>-->
+                    <!--<executable>java</executable>-->
+                    <!--<arguments>-->
+                        <!--<argument>-Xms${exec.Xms}</argument>-->
+                        <!--<argument>-Xmx${exec.Xmx}</argument>-->
+                        <!--<argument>-classpath</argument>-->
+                        <!--<classpath />-->
+                        <!--<argument>com.bazaarvoice.emodb.examples.skeleton.SkeletonService</argument>-->
+                        <!--<argument>server</argument>-->
+                        <!--<argument>src/main/conf/config.default.yml</argument>-->
+                    <!--</arguments>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
+        <!--</plugins>-->
+    </build>
+
+    <!--<profiles>-->
+        <!--<profile>-->
+            <!--<id>assemble</id>-->
+            <!--<build>-->
+                <!--<plugins>-->
+                    <!--<plugin>-->
+                        <!--<groupId>org.apache.maven.plugins</groupId>-->
+                        <!--<artifactId>maven-shade-plugin</artifactId>-->
+                        <!--<configuration>-->
+                            <!--<createDependencyReducedPom>true</createDependencyReducedPom>-->
+                            <!--<filters>-->
+                                <!--<filter>-->
+                                    <!--<artifact>*:*</artifact>-->
+                                    <!--<excludes>-->
+                                        <!--<exclude>META-INF/*.SF</exclude>-->
+                                        <!--<exclude>META-INF/*.DSA</exclude>-->
+                                        <!--<exclude>META-INF/*.RSA</exclude>-->
+                                    <!--</excludes>-->
+                                <!--</filter>-->
+                            <!--</filters>-->
+                        <!--</configuration>-->
+                        <!--<executions>-->
+                            <!--<execution>-->
+                                <!--<phase>package</phase>-->
+                                <!--<goals>-->
+                                    <!--<goal>shade</goal>-->
+                                <!--</goals>-->
+                                <!--<configuration>-->
+                                    <!--<transformers>-->
+                                        <!--&lt;!&ndash; collate the various META-INF/services entries in the JARs instead of overwriting them &ndash;&gt;-->
+                                        <!--<transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />-->
+                                        <!--<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">-->
+                                            <!--<mainClass>com.bazaarvoice.emodb.examples.skeleton.SkeletonService</mainClass>-->
+                                        <!--</transformer>-->
+                                    <!--</transformers>-->
+                                <!--</configuration>-->
+                            <!--</execution>-->
+                        <!--</executions>-->
+                    <!--</plugin>-->
+                <!--</plugins>-->
+            <!--</build>-->
+        <!--</profile>-->
+    <!--</profiles>-->
+
+
+</project>
