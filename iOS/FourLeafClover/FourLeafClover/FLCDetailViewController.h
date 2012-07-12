@@ -9,17 +9,28 @@
 #import <UIKit/UIKit.h>
 #import "ImgurUploader.h"
 #import "MBProgressHUD.h"
+#import <SpeechKit/SpeechKit.h>
 
 @class FLCQuestion;
 
-@interface FLCDetailViewController : UIViewController<UINavigationControllerDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UITextViewDelegate, ImgurUploaderDelegate, MBProgressHUDDelegate>
+@interface FLCDetailViewController : UIViewController<UINavigationControllerDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UITextViewDelegate, SpeechKitDelegate, SKRecognizerDelegate, ImgurUploaderDelegate, MBProgressHUDDelegate>
 {
     ImgurUploader *uploader;
     MBProgressHUD *HUD;
+    
+    SKRecognizer* voiceSearch;
+    enum {
+        TS_IDLE,
+        TS_INITIAL,
+        TS_RECORDING,
+        TS_PROCESSING,
+    } transactionState;
 }
 
 @property (nonatomic, strong) FLCQuestion *question;
 @property (nonatomic, strong) UIImagePickerController *pickerController;
+@property (readonly) SKRecognizer* voiceSearch;
+
 
 @property IBOutlet UILabel *questionLabel;
 @property IBOutlet UISegmentedControl *answerControl;

@@ -23,10 +23,13 @@
 - (void)submitAnswerWithQuestion:(FLCQuestion *)theQuestion withAnswerString:(NSString *)theAnswer;
 @end
 
+const unsigned char SpeechKitApplicationKey[] = {0xdd, 0x32, 0xe8, 0x98, 0xde, 0xdf, 0xbe, 0xc2, 0x6c, 0x09, 0xa0, 0xa6, 0x11, 0x05, 0x30, 0x5a, 0x67, 0xf2, 0xe1, 0x8b, 0x10, 0xba, 0x81, 0xce, 0x56, 0x15, 0xec, 0x63, 0x4b, 0xd0, 0x32, 0x28, 0x02, 0x1a, 0xc0, 0xe0, 0xfa, 0x7f, 0xa2, 0x66, 0x88, 0x43, 0x0c, 0x99, 0x48, 0x3d, 0xf3, 0xaf, 0x2f, 0xd5, 0x3a, 0x3f, 0x8f, 0xbc, 0x0d, 0xe6, 0xd1, 0xf9, 0x49, 0x1c, 0xc9, 0x7c, 0x44, 0xcb};
+
 @implementation FLCDetailViewController
 
 @synthesize question;
 
+@synthesize voiceSearch;
 @synthesize pickerController;
 @synthesize questionLabel;
 @synthesize answerControl;
@@ -82,7 +85,7 @@
     
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         NSLog(@"Content post success!");
-        
+        NSLog(@"Status Code %u", [response statusCode]);
         HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
         HUD.mode = MBProgressHUDModeCustomView;
         HUD.labelText = @"See you next time!";
@@ -115,6 +118,19 @@
     [self.view addGestureRecognizer:tap];
 
     questionLabel.text = question.question;
+    
+    [SpeechKit setupWithID:@"NMDPTRIAL_daniel_lau20120709170122"
+                      host:@"sandbox.nmdp.nuancemobility.net"
+                      port:443
+                    useSSL:NO
+                  delegate:self];
+    
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [voiceSearch cancel];
+    voiceSearch = nil;
 }
 
 - (void)didReceiveMemoryWarning
@@ -126,6 +142,16 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void)recordAudio
+{
+    transactionState = TS_INITIAL;
+
+    voiceSearch = [[SKRecognizer alloc] initWithType:SKDictationRecognizerType
+                                           detection:SKLongEndOfSpeechDetection
+                                            language:@"en_US"
+                                            delegate:self];
 }
 
 - (IBAction)answerControlChanged:(id)sender
@@ -148,7 +174,7 @@
         
     } else if (index == CONTROL_SPEAK) {
         // TODO: Fill this in with real code
-        [self resetSelection];
+        [self recordAudio];
     }
 }
 
@@ -234,6 +260,69 @@
         textView.text = @"";
     }
 }
+
+#pragma mark -
+#pragma mark SKRecognizerDelegate methods
+
+- (void)recognizerDidBeginRecording:(SKRecognizer *)recognizer
+{
+    NSLog(@"Recording started.");
+    
+    transactionState = TS_RECORDING;
+    
+	HUD.mode = MBProgressHUDModeIndeterminate;
+	HUD.labelText = @"Listening...";
+    [HUD show:YES];
+
+}
+
+- (void)recognizerDidFinishRecording:(SKRecognizer *)recognizer
+{
+    NSLog(@"Recording finished.");
+
+    transactionState = TS_PROCESSING;
+}
+
+- (void)recognizer:(SKRecognizer *)recognizer didFinishWithResults:(SKRecognition *)results
+{
+    NSLog(@"Got results.");
+    NSLog(@"Session id [%@].", [SpeechKit sessionID]); // for debugging purpose: printing out the speechkit session id
+    
+    long numOfResults = [results.results count];
+    
+    transactionState = TS_IDLE;
+    
+    if (numOfResults > 0) {
+        NSLog(@"%@", [results firstResult]);
+        if ([self.answerField.text isEqualToString:@"My answer..."]) {
+            self.answerField.text = [results firstResult];
+        } else {
+            NSString *appendedString = [NSString stringWithFormat:@"%@ %@", self.answerField.text, [results firstResult]];
+            self.answerField.text = appendedString;
+        }
+    }
+    
+	if (numOfResults > 1)
+		NSLog(@"%@", [[results.results subarrayWithRange:NSMakeRange(1, numOfResults-1)] componentsJoinedByString:@"\n"]);
+    
+    [self resetSelection];
+    [HUD hide:YES];
+	voiceSearch = nil;
+}
+
+- (void)recognizer:(SKRecognizer *)recognizer didFinishWithError:(NSError *)error suggestion:(NSString *)suggestion
+{
+    NSLog(@"Got error.");
+    NSLog(@"Session id [%@].", [SpeechKit sessionID]); // for debugging purpose: printing out the speechkit session id
+    
+    transactionState = TS_IDLE;
+
+    NSLog(@"ERROR");
+    [self resetSelection];
+    [HUD hide:YES];
+	voiceSearch = nil;
+}
+
 
 
 

@@ -75,6 +75,9 @@
 		651467B215AEF61D00B3DA74 /* grayArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 651467AC15AEF61D00B3DA74 /* grayArrow@2x.png */; };
 		651467B315AEF63000B3DA74 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 651467A615AEF5FA00B3DA74 /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		651467B915AEF8A200B3DA74 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 651467B815AEF8A200B3DA74 /* QuartzCore.framework */; };
+		651467C715AF2A3F00B3DA74 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 651467C615AF2A3E00B3DA74 /* AudioToolbox.framework */; };
+		651467C915AF2A7300B3DA74 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 651467C815AF2A7200B3DA74 /* AVFoundation.framework */; };
+		651467CA15AF2B9400B3DA74 /* SpeechKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 651467C015AF26DB00B3DA74 /* SpeechKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -183,6 +186,9 @@
 		651467AB15AEF61D00B3DA74 /* grayArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grayArrow.png; sourceTree = "<group>"; };
 		651467AC15AEF61D00B3DA74 /* grayArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grayArrow@2x.png"; sourceTree = "<group>"; };
 		651467B815AEF8A200B3DA74 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		651467C015AF26DB00B3DA74 /* SpeechKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpeechKit.framework; sourceTree = "<group>"; };
+		651467C615AF2A3E00B3DA74 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		651467C815AF2A7200B3DA74 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +196,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				651467CA15AF2B9400B3DA74 /* SpeechKit.framework in Frameworks */,
+				651467C915AF2A7300B3DA74 /* AVFoundation.framework in Frameworks */,
+				651467C715AF2A3F00B3DA74 /* AudioToolbox.framework in Frameworks */,
 				651467B915AEF8A200B3DA74 /* QuartzCore.framework in Frameworks */,
 				651466DB15AEAA8000B3DA74 /* libUAirship-1.2.2.a in Frameworks */,
 				651466D115AEA75700B3DA74 /* CoreLocation.framework in Frameworks */,
@@ -213,7 +222,6 @@
 		6514651415AE79FC00B3DA74 = {
 			isa = PBXGroup;
 			children = (
-				651467B815AEF8A200B3DA74 /* QuartzCore.framework */,
 				6514652915AE79FC00B3DA74 /* FourLeafClover */,
 				6514655B15AE99C200B3DA74 /* Assets */,
 				6514652215AE79FC00B3DA74 /* Frameworks */,
@@ -232,6 +240,10 @@
 		6514652215AE79FC00B3DA74 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				651467C815AF2A7200B3DA74 /* AVFoundation.framework */,
+				651467C615AF2A3E00B3DA74 /* AudioToolbox.framework */,
+				651467B815AEF8A200B3DA74 /* QuartzCore.framework */,
+				651467C015AF26DB00B3DA74 /* SpeechKit.framework */,
 				651466DA15AEAA8000B3DA74 /* libUAirship-1.2.2.a */,
 				651466D015AEA75700B3DA74 /* CoreLocation.framework */,
 				651466CE15AEA74F00B3DA74 /* StoreKit.framework */,
@@ -575,6 +587,11 @@
 		6514653E15AE79FC00B3DA74 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../Downloads/DragonMobileSDK_1.4.0/DragonMobileSDK_1.4.0/DragonMobileRecognizer\"",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FourLeafClover/FourLeafClover-Prefix.pch";
 				HEADER_SEARCH_PATHS = "./Airship/**";
@@ -592,6 +609,11 @@
 		6514653F15AE79FC00B3DA74 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../Downloads/DragonMobileSDK_1.4.0/DragonMobileSDK_1.4.0/DragonMobileRecognizer\"",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FourLeafClover/FourLeafClover-Prefix.pch";
 				HEADER_SEARCH_PATHS = "./Airship/**";
