@@ -8,11 +8,10 @@ var questions = function($, _, Backbone) {
 
 //    var _product_id = Math.floor(Math.random()*100000000000);
     var _product_id = "foo";
-    var _hostname = "localhost";
+    var _hostname = "heman";
 
     // Backbone settings
     Backbone.emulateHTTP = true;
-
 
     // XHR mappings
     $.ajaxSetup({ cache: false });

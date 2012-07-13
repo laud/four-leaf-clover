@@ -3,7 +3,11 @@ package com.bazaarvoice.emodb.examples.skeleton.databus;
 import com.bazaarvoice.emodb.databus.api.Databus;
 import com.bazaarvoice.emodb.databus.api.Event;
 import com.bazaarvoice.emodb.databus.api.EventKey;
+import com.bazaarvoice.emodb.esquire.api.Entity;
+import com.bazaarvoice.emodb.esquire.api.Esquire;
 import com.bazaarvoice.emodb.examples.skeleton.config.DatabusListeningConfiguration;
+import com.bazaarvoice.emodb.examples.skeleton.resources.ProfileResource;
+import com.bazaarvoice.emodb.sor.api.DataStore;
 import com.bazaarvoice.emodb.sor.condition.Conditions;
 import com.google.common.base.Function;
 import com.google.common.collect.Collections2;
@@ -37,7 +41,9 @@ import java.io.*;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -46,6 +52,7 @@ public class ManagedDatabusListener implements Managed {
 
     private final Log log = Log.forClass(getClass());
 
+    @Inject private Esquire esClient;
     @Inject private Databus databusClient;
     @Inject @DatabusResource private ExecutorService databusPollingExecutorService;
     @Inject @DatabusResource private ScheduledExecutorService databusSubscriptionExecutorService;
@@ -139,17 +146,33 @@ public class ManagedDatabusListener implements Managed {
                 TimeUnit.SECONDS);
     }
 
+
     private void handleQuestionBySMS(Event event) throws Exception{
         String id = (String) event.getContent().get("_id");
         String text = (String) event.getContent().get("text");
         if (text==null){
             return;
         }
-        URL smsService = new URL("http://ec2-23-22-57-59.compute-1.amazonaws.com:8080/send?questionId="+id+"&number=4083385198&text=" + URLEncoder.encode(text, "UTF-8"));
-        URLConnection yc = smsService.openConnection();
-        BufferedReader in = new BufferedReader( new InputStreamReader(yc.getInputStream()) );
-        in.close();
+        List<String> subscribers = getSubscribersForThisProduct (event);
+        for (String phoneNumber : subscribers) {
+            URL smsService = new URL("http://ec2-23-22-57-59.compute-1.amazonaws.com:8080/send?questionId="+id+"&number="+phoneNumber+"&text=" + URLEncoder.encode(text, "UTF-8"));
+            URLConnection yc = smsService.openConnection();
+            BufferedReader in = new BufferedReader( new InputStreamReader(yc.getInputStream()) );
+            in.close();
+        }
     }
+
+    private List<String> getSubscribersForThisProduct(Event event) {
+        //todo: filter by product
+        List<Entity> entities = esClient.queryTable(ProfileResource.TABLE).type("profile").limit(20).execute();
+        Set<String> phoneNums = new HashSet<String>();
+        System.out.println("Found " + entities.size()+" subscribers");
+        for (Entity e: entities) {
+            phoneNums.add( (String) e.get("phone_num") );
+        }
+        return new ArrayList<String>(phoneNums);
+    }
+
     private static final String CHARSET = "UTF-8";
     static private class JsonEntity extends StringEntity
     {
